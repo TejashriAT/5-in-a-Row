@@ -126,6 +126,8 @@
 	  public void run() {
 	    try {
 	      // Get notification from the server
+	      System.out.println("Player 1, please enter your name: ");
+              String namePlayer1 = fromServer.readline();                
 	      int player = fromServer.readInt();
 	
 
@@ -138,6 +140,8 @@
 	
 
 	        // Receive startup notification from the server
+		System.out.println("Player 2, please enter your name: ");
+                String namePlayer2 = fromServer.readLine();
 	        fromServer.readInt(); // Whatever read is ignored
 	
 

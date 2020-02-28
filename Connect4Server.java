@@ -1,12 +1,18 @@
-package project.
-  import java.io.*;
+ package project.connect5inarow;
+
+  	import java.io.*;
 	import java.net.*;
 	import javax.swing.*;
 	import java.awt.*;
 	import java.util.Date;
 	import java.awt.event.*;
 	
-
+/**
+ * This defines the ConnectFour (5-in-a-Row) game Server side code.
+ *
+ * @author Tejashri Gunde
+ *
+ */
 	public class connectfourserver extends JFrame implements connectfourconstraints {
 		JButton jbtConnect;
 		JTextField iport;
@@ -125,7 +131,7 @@ package project.
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	    setSize(500, 700);
-	    setTitle("Connect Four Server");
+	    setTitle("Connect 5-in-a-Row Server");
 	    setVisible(true);
 	
 	  }
@@ -138,8 +144,8 @@ package project.
 	  private Socket player2;
 	
 
-	  // Create and initialize cells
-	  private char[][] cell =  new char[6][7];
+	  // Create and initialize cells with 6 rows and 9 columns
+	  private char[][] cell =  new char[6][9];
 	
 
 	  private DataInputStream fromPlayer1;
@@ -159,8 +165,8 @@ package project.
 	
 
 	    // Initialize cells
-	    for (int i = 0; i < 6; i++)
-	      for (int j = 0; j < 7; j++)
+	    for (int i = 0; i < 6; i++) // 6 Rows
+	      for (int j = 0; j < 9; j++) // 9 Columns
 	        cell[i][j] = ' ';
 	  }
 	
@@ -211,6 +217,7 @@ package project.
 	        }
 	        else {
 	          // Notify player 2 to take the turn
+		  System.out.print("It’s your turn " + toplayer2 + ", please enter column (1-9):");
 	          toPlayer2.writeInt(CONTINUE);
 	
 
@@ -234,6 +241,7 @@ package project.
 	        }
 	        else {
 	          // Notify player 1 to take the turn
+		  System.out.print("It’s your turn " + toplayer1 + ", please enter column (1-9):");
 	          toPlayer1.writeInt(CONTINUE);
 	
 
@@ -258,7 +266,7 @@ package project.
 	  /** Determine if the cells are all occupied */
 	  private boolean isFull() {
 	    for (int i = 0; i < 6; i++)
-	      for (int j = 0; j < 7; j++)
+	      for (int j = 0; j < 9; j++)
 	        if (cell[i][j] == ' ')
 	          return false; // At least one cell is not filled
 	
@@ -272,7 +280,7 @@ package project.
 	
 
 	  	// TEST BOARD VALUES
-	  	for (int x = 0; x < 5; x++) {
+	  	for (int x = 0; x < 6; x++) {
 			for (int y = 0; y < 6; y++) {
 				System.out.print(cell[x][y]);
 			}
@@ -282,17 +290,17 @@ package project.
 		//Horizontal wins
 	
   for (int x = 0; x < 6; x++) {
-			for (int y = 0; y < 3; y++) {
-				if (cell[x][y] == token && cell[x][y+1] == token && cell[x][y+2] == token && cell[x][y+3] == token) {
+			for (int y = 0; y < 4; y++) {
+				if (cell[x][y] == token && cell[x][y+1] == token && cell[x][y+2] == token && cell[x][y+3] == token && cell[x][y+4] == token) {
 					return true;
 				}
 			}
 		}
 		// Vertical wins
 	
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 7; y++) {
-				if (cell[x][y] == token && cell[x+1][y] == token && cell[x+2][y] == token && cell[x+3][y] == token) {
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 9; y++) {
+				if (cell[x][y] == token && cell[x+1][y] == token && cell[x+2][y] == token && cell[x+3][y] == token && cell[x+4][y] == token) {
 					return true;
 				}
 			}
@@ -300,19 +308,19 @@ package project.
 	
 		// Diagonal wins
 		//0 to 1
-		//0 to 3
-		for (int x = 0; x < 3; x++) {
+		//0 to 4
+		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 6; y++) {
-				if (cell[x][y] == token && cell[x+1][y+1] == token && cell[x+2][y+2] == token && cell[x+3][y+3] == token) {
+				if (cell[x][y] == token && cell[x+1][y+1] == token && cell[x+2][y+2] == token && cell[x+3][y+3] == token && cell[x+4][y+4] == token) {
 					return true;
 				}
 			}
 		}
 
 		//Other diagonal wins
-		for (int x = 0; x < 3; x++) {
-			for (int y = 3; y < 7; y++) {
-				if (cell[x][y] == token && cell[x+1][y-1] == token && cell[x+2][y-2] == token && cell[x+3][y-3] == token) {
+		for (int x = 0; x < 4; x++) {
+			for (int y = 3; y < 9; y++) {
+				if (cell[x][y] == token && cell[x+1][y-1] == token && cell[x+2][y-2] == token && cell[x+3][y-3] == token && cell[x+4][y-4] == token) {
 					return true;
 				}
 			}

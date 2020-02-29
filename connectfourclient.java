@@ -58,7 +58,7 @@
 	  private boolean continueToPlay = true;
 	
 
-	  // Wait for the player to mark a cell
+	  // Wait for the player to mark a cell or logically drop a coin
 	  private boolean waiting = true;
 	
 
@@ -104,9 +104,9 @@
 	      // Create a socket to connect to the server
 	      Socket socket;
 	      if (isStandAlone)
-	        socket = new Socket(host, 8080);
+	        socket = new Socket(host, 80);// port 80 for HTTP
 	      else
-	        socket = new Socket(getCodeBase().getHost(), 8080);
+	        socket = new Socket(getCodeBase().getHost(), 80);
 	
 
 	      // Create an input stream to receive data from the server

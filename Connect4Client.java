@@ -15,7 +15,7 @@
  */
 
 	public class connectfourclient extends JApplet
-	    implements Runnable, connectfourconstraints {
+	    implements Runnable, playerconstraints {
 	  // Indicate whether the player has the turn
 	  private boolean myTurn = false;
 	
@@ -95,7 +95,7 @@
 	  }
 	
 
-	  private void connectToServer() {
+	  private void connectToServer() throws IOException {
 	    try {
 	      // Create a socket to connect to the server
 	      Socket socket;
@@ -126,7 +126,7 @@
 	  public void run() {
 	    try {
 	      // Get notification from the server
-	      System.out.println("Player 1, please enter your name: ");
+	      jlblTitle.setText("Player 1, please enter your name: ");
               String namePlayer1 = fromServer.readline();                
 	      int player = fromServer.readInt();
 	
@@ -135,18 +135,18 @@
 	      if (player == PLAYER1) {
 	        myToken = 'r';
 	        otherToken = 'b';
-	        jlblTitle.setText("Player 1 with color red");
+	        jlblTitle.setText(+namePlayer1+ " with color red");
 	        jlblStatus.setText("Waiting for player 2 to join");
 	
 
 	        // Receive startup notification from the server
-		System.out.println("Player 2, please enter your name: ");
+		jlblTitle.setText("Player 2, please enter your name: ");
                 String namePlayer2 = fromServer.readLine();
 	        fromServer.readInt(); // Whatever read is ignored
 	
 
 	        // The other player has joined
-	        jlblStatus.setText("Player 2 has joined. I start first");
+	        jlblStatus.setText(+namePlayer2+" has joined. I start first");
 	
 
 	        // It is my turn
@@ -155,8 +155,8 @@
 	      else if (player == PLAYER2) {
 	        myToken = 'b';
 	        otherToken = 'r';
-	        jlblTitle.setText("Player 2 with color blue");
-	        jlblStatus.setText("Waiting for player 1 to move");
+	        jlblTitle.setText(+namePlayer2+" with color blue");
+	        jlblStatus.setText("Waiting for "+nameplayer1+" to move");
 	      }
 	
 
@@ -174,18 +174,25 @@
 	        }
 	      }
 	    }
-	    catch (Exception ex) {
-	    }
+	   catch (IOException e) {
+	   if(player == PLAYER1)
+	   {
+	   jlblTitle.setText("GAME OVER ! " +namePlayer1+ " got disconnected");
+	   }
+	   else
+		jlblTitle.setText("GAME OVER ! " +namePlayer2+ " got disconnected");
 	  }
-	
+	   finally {
+    		 fromServer.close();
+     		 toServer.close();
+    		 socket.close();
+   }
 
 	  /** Wait for the player to mark a cell */
 	  private void waitForPlayerAction() throws InterruptedException {
 	    while (waiting) {
 	      Thread.sleep(100);
 	    }
-	
-
 	    waiting = true;
 	  }
 	
@@ -207,10 +214,10 @@
 	      // Player 1 won, stop playing
 	      continueToPlay = false;
 	      if (myToken == 'r') {
-	        jlblStatus.setText("I won! (red)");
+	        jlblStatus.setText("I won!"); // Red
 	      }
 	      else if (myToken == 'b') {
-	        jlblStatus.setText("Player 1 (red) has won!");
+	        jlblStatus.setText(+namePlayer1+" has won!");
 	        receiveMove();
 	      }
 	    }
@@ -218,10 +225,10 @@
 	      // Player 2 won, stop playing
 	      continueToPlay = false;
 	      if (myToken == 'b') {
-	        jlblStatus.setText("I won! (blue)");
+	        jlblStatus.setText("I won!"); // Blue
 	      }
 	      else if (myToken == 'r') {
-	        jlblStatus.setText("Player 2 (blue) has won!");
+	        jlblStatus.setText(+namePlayer2+ " has won!");
 	        receiveMove();
 	      }
 	    }
@@ -338,7 +345,7 @@
 	  /** This main method enables the applet to run as an application */
 	  public static void main(String[] args) {
 	    // Create a frame
-	    JFrame frame = new JFrame("Connect Four Client");
+	    JFrame frame = new JFrame("Connect 5-in-a-Row Client");
 	
 
 	    // Create an instance of the applet

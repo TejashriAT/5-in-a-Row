@@ -196,7 +196,7 @@
 	        // Receive a move from player 1
 	        int row = fromPlayer1.readInt();
 	        int column = fromPlayer1.readInt();
-	        char token = 'r';
+	        char coin = 'r';
 	
 
 	        cell[row][column] = 'r';
@@ -217,7 +217,7 @@
 	        }
 	        else {
 	          // Notify player 2 to take the turn
-		  System.out.print("It’s your turn " + toplayer2 + ", please enter column (1-9):");
+		  System.out.print("It’s your turn " +toplayer2+ ", please enter column (1-9):");
 	          toPlayer2.writeInt(CONTINUE);
 	
 
@@ -233,7 +233,7 @@
 	
 
 	        // Check if Player 2 wins
-	        if (isWon(row, column, token)) {
+	        if (isWon(row, column, coin)) {
 	          toPlayer1.writeInt(PLAYER2_WON);
 	          toPlayer2.writeInt(PLAYER2_WON);
 	          sendMove(toPlayer1, row, column);
@@ -241,7 +241,7 @@
 	        }
 	        else {
 	          // Notify player 1 to take the turn
-		  System.out.print("It’s your turn " + toplayer1 + ", please enter column (1-9):");
+		  System.out.print("It’s your turn " +toplayer1+ ", please enter column (1-9):");
 	          toPlayer1.writeInt(CONTINUE);
 	
 
@@ -275,8 +275,8 @@
 	    return true;
 	  }	
 
-	  /*Determine if the player with the specified token wins */
-	  private boolean isWon(int row, int column, char token) {
+	  /*Determine if the player with the specified coin wins */
+	  private boolean isWon(int row, int column, char coin) {
 	
 
 	  	// TEST BOARD VALUES
@@ -287,40 +287,40 @@
 			System.out.println();
 		}
 	
-		//Horizontal wins
+		//Horizontal wins check 5 in a row over 6 Rows
 	
   for (int x = 0; x < 6; x++) {
 			for (int y = 0; y < 4; y++) {
-				if (cell[x][y] == token && cell[x][y+1] == token && cell[x][y+2] == token && cell[x][y+3] == token && cell[x][y+4] == token) {
+				if (cell[x][y] == coin && cell[x][y+1] == coin && cell[x][y+2] == coin && cell[x][y+3] == coin && cell[x][y+4] == coin) {
 					return true;
 				}
 			}
 		}
-		// Vertical wins
+		// Vertical wins check 5 in a row over 9 columns
 	
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 9; y++) {
-				if (cell[x][y] == token && cell[x+1][y] == token && cell[x+2][y] == token && cell[x+3][y] == token && cell[x+4][y] == token) {
+				if (cell[x][y] == coin && cell[x+1][y] == coin && cell[x+2][y] == coin && cell[x+3][y] == coin && cell[x+4][y] == coin) {
 					return true;
 				}
 			}
 		}
 	
-		// Diagonal wins
+		// Diagonal wins check 5 in a row over 6 rows upwards
 		//0 to 1
 		//0 to 4
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 6; y++) {
-				if (cell[x][y] == token && cell[x+1][y+1] == token && cell[x+2][y+2] == token && cell[x+3][y+3] == token && cell[x+4][y+4] == token) {
+				if (cell[x][y] == coin && cell[x+1][y+1] == coin && cell[x+2][y+2] == coin && cell[x+3][y+3] == coin && cell[x+4][y+4] == coin) {
 					return true;
 				}
 			}
 		}
 
-		//Other diagonal wins
+		//Other diagonal wins check 5 in a row over 9 columns downwards
 		for (int x = 0; x < 4; x++) {
 			for (int y = 3; y < 9; y++) {
-				if (cell[x][y] == token && cell[x+1][y-1] == token && cell[x+2][y-2] == token && cell[x+3][y-3] == token && cell[x+4][y-4] == token) {
+				if (cell[x][y] == coin && cell[x+1][y-1] == coin && cell[x+2][y-2] == coin && cell[x+3][y-3] == coin && cell[x+4][y-4] == coin) {
 					return true;
 				}
 			}

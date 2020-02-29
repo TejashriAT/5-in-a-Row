@@ -279,9 +279,9 @@
 	  private boolean isWon(int row, int column, char coin) {
 	
 
-	  	// TEST BOARD VALUES
+	  	// TEST BOARD VALUES 6 x 9 = 54 grids
 	  	for (int x = 0; x < 6; x++) {
-			for (int y = 0; y < 6; y++) {
+			for (int y = 0; y < 9; y++) {
 				System.out.print(cell[x][y]);
 			}
 			System.out.println();

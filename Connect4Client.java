@@ -126,8 +126,8 @@
 	  public void run() {
 	    try {
 	      // Get notification from the server
-	      jlblTitle.setText("Player 1, please enter your name: ");
-              String namePlayer1 = fromServer.readline();                
+	      jlblTitle.setText("Player 1, please enter your name: ");// Prompt message to Player 1 to enter Name
+              String namePlayer1 = jlblTitle.getText();                
 	      int player = fromServer.readInt();
 	
 
@@ -140,8 +140,8 @@
 	
 
 	        // Receive startup notification from the server
-		jlblTitle.setText("Player 2, please enter your name: ");
-                String namePlayer2 = fromServer.readLine();
+		jlblTitle.setText("Player 2, please enter your name: ");// Prompt message to Player 2 to enter Name
+                String namePlayer2 = jlblTitle.getText();
 	        fromServer.readInt(); // Whatever read is ignored
 	
 

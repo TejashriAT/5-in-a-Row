@@ -1,10 +1,11 @@
 # 5-in-a-Row
 Connect 4 (5-in-a-Row) Game
 
-### Description 
-5-in-a-Row, a variation of the famous Connect Four game, is a two-player connection game
-in which the players first choose a color and then take turns dropping colored discs from the
-top into a nine-column, six-row vertically suspended grid. The pieces fall straight down,
+### Rule Description 
+- 5-in-a-Row, a variation of the famous Connect Four game, is a Two players connection game.
+- Two players (Player1 is Red, Player2 is Blue) choose the color to take turns to fill the board with coins, trying to connect
+			5-in-a-Row of one's own coins, either horizontally, vertically or diagonally.
+- The game has a nine-column, six-row vertically suspended grid. The pieces fall straight down,
 occupying the next available space within the column. The objective of the game is to be the
 first to form a horizontal, vertical, or diagonal line of five of one's own discs.
 
@@ -17,7 +18,7 @@ Eclipse
 ```
 Java
 ```
-## Rules
+## Features
 - The communication between the clients and the server should be over HTTP.
 
 ### Server-side 

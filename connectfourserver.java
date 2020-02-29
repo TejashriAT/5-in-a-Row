@@ -187,8 +187,7 @@
 	      // Write anything to notify player 1 to start
 	      // This is just to let player 1 know to start
 	      toPlayer1.writeInt(1);
-	
-
+		
 	      // Continuously serve the players and determine and report
 	      // the game status to the players
 	      while (true) {
@@ -217,7 +216,7 @@
 	        else {
 	          // Notify player 2 to take the turn
 		  
-		  System.out.print("It’s your turn " +fromPlayer1.getNamePlayer(player1)+ ", please enter column (1-9):");
+		  System.out.print("It’s your turn " +fromPlayer2.getPlayerName(player2)+ ", please enter column (1-9):");
 	          toPlayer2.writeInt(CONTINUE);
 	
 
@@ -241,7 +240,7 @@
 	        }
 	        else {
 	          // Notify player 1 to take the turn
-		  System.out.print("It’s your turn " +toplayer1+ ", please enter column (1-9):");
+		  System.out.print("It’s your turn " +fromPlayer1.getPlayerName(player1)+ ", please enter column (1-9):");
 	          toPlayer1.writeInt(CONTINUE);
 	
 

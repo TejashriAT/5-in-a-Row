@@ -37,7 +37,7 @@
 	System.out.println("BEGIN LISTEN METHOD");
 	    try {
 	      // Create a server socket
-	      jtaLog.append("WORK!!!!");
+	      jtaLog.append("WORK!");
 	System.out.println("CONNECT");
 	      ServerSocket serverSocket = new ServerSocket(port1);
 	System.out.println("DONE");
@@ -131,7 +131,7 @@
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	    setSize(500, 700);
-	    setTitle("Connect 5-in-a-Row Server");
+	    setTitle("Connect 5-in-a-row Server");
 	    setVisible(true);
 	
 	  }
@@ -143,7 +143,6 @@
 	  private Socket player1;
 	  private Socket player2;
 	
-
 	  // Create and initialize cells with 6 rows and 9 columns
 	  private char[][] cell =  new char[6][9];
 	
@@ -203,7 +202,7 @@
 	
 
 	        // Check if Player 1 wins
-	        if (isWon(row, column, token)) {
+	        if (isWon(row, column, coin)) {
 	          toPlayer1.writeInt(PLAYER1_WON);
 	          toPlayer2.writeInt(PLAYER1_WON);
 	          sendMove(toPlayer2, row, column);
@@ -217,7 +216,8 @@
 	        }
 	        else {
 	          // Notify player 2 to take the turn
-		  System.out.print("It’s your turn " +toplayer2+ ", please enter column (1-9):");
+		  
+		  System.out.print("It’s your turn " +fromPlayer1.getNamePlayer(player1)+ ", please enter column (1-9):");
 	          toPlayer2.writeInt(CONTINUE);
 	
 

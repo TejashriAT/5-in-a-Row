@@ -20,12 +20,12 @@
 	  private boolean myTurn = false;
 	
 
-	  // Indicate the token for the player
-	  private char myToken = ' ';
+	  // Indicate the coin for the player
+	  private char myCoin = ' ';
 	
 
-	  // Indicate the token for the other player
-	  private char otherToken = ' ';
+	  // Indicate the Coin for the other player
+	  private char otherCoin = ' ';
 	
 
 	  // Create and initialize cells with 6 Row and 9 Columns
@@ -135,7 +135,18 @@
 	      if (player == PLAYER1) {
 	        myToken = 'r';
 	        otherToken = 'b';
-	        jlblTitle.setText(+namePlayer1+ " with color red");
+	        jlblTitle.setText(+namePlayer1+ " please enter the desired color of your coins (r=Red, b=Blue): ");
+                    String color1 = jlblTitle.getText();
+		    
+                    chip2.setColor(color1);
+ 
+                    if ("black".equals(color1) || "grey".equals(color1) ||
+                               "white".equals(color1) || "red".equals(color1) || 
+                               "orange".equals(color1) || "yellow".equals(color1) ||
+                               "green".equals(color1) || "blue".equals(color1) || 
+                               "purple".equals(color1) || "brown".equals(color1) || "pink".equals(color1)) {
+ 
+		
 	        jlblStatus.setText("Waiting for player 2 to join");
 	
 

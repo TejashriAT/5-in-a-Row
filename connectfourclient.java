@@ -357,7 +357,7 @@
 	  /** This main method enables the applet to run as an application */
 	  public static void main(String[] args) {
 	    // Create a frame
-	    JFrame frame = new JFrame("Connect 4 Client");
+	    JFrame frame = new JFrame("Connect 5-in-a-row Client");
 	
 
 	    // Create an instance of the applet

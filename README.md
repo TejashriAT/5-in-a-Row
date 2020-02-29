@@ -3,11 +3,10 @@ Connect 4 (5-in-a-Row) Game
 
 ### Rule Description 
 - 5-in-a-Row, a variation of the famous Connect Four game, is a Two players connection game.
-- Two players (Player1 is Red, Player2 is Blue) choose the color to take turns to fill the board with coins, trying to connect
-			5-in-a-Row of one's own coins, either horizontally, vertically or diagonally.
-- The game has a nine-column, six-row vertically suspended grid. The pieces fall straight down,
-occupying the next available space within the column. The objective of the game is to be the
-first to form a horizontal, vertical, or diagonal line of five of one's own discs.
+- Two players choose the color (either **Red** or **Blue**) to take turns to fill the board with coins.
+- The game has a 9 Column and 6 Row grid board game. The pieces fall straight down,
+  occupying the next available space within the column. The objective of the game is to be the
+  first to form a horizontal, vertical, or diagonal line of five of one's own discs.
 
 ## Prerequisites
 Softwares to install

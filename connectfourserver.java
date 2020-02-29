@@ -41,7 +41,7 @@
 	System.out.println("CONNECT");
 	      ServerSocket serverSocket = new ServerSocket(port1);
 	System.out.println("DONE");
-	      jtaLog.append(new Date() + ": Server started at socket 8080\n");
+	      jtaLog.append(new Date() + ": HTTP Server started at socket 80\n");
 	
 	      // Number a session
 	      int sessionNo = 1;

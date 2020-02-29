@@ -37,6 +37,8 @@
 	  // Create and initialize a title label
 	  private JLabel jlblTitle = new JLabel();
 	
+	  // Create and initialize player
+	  private Player myplayer = new Player();
 
 	  // Create and initialize a status labelf
 	  private JLabel jlblStatus = new JLabel();
@@ -102,9 +104,9 @@
 	      // Create a socket to connect to the server
 	      Socket socket;
 	      if (isStandAlone)
-	        socket = new Socket(host, 1234);
+	        socket = new Socket(host, 8080);
 	      else
-	        socket = new Socket(getCodeBase().getHost(), 1234);
+	        socket = new Socket(getCodeBase().getHost(), 8080);
 	
 
 	      // Create an input stream to receive data from the server
@@ -128,8 +130,8 @@
 	  public void run() {
 	    try {
 	      // Get notification from the server
-	      jlblTitle.setText("Player 1, please enter your name: ");// Prompt message to Player 1 to enter Name
-              String namePlayer1 = jlblTitle.getText();                
+	      myplayer.setPlayerName("Player 1, please enter your name: ");// Prompt message to Player 1 to enter Name
+              String namePlayer1 = myplayer.getPlayerName();                
 	      int player = fromServer.readInt();
 	
 
@@ -142,8 +144,8 @@
 	
 
 	        // Receive startup notification from the server
-		jlblTitle.setText("Player 2, please enter your name: ");// Prompt message to Player 2 to enter Name
-                String namePlayer2 = jlblTitle.getText();
+		myplayer.setPlayerName("Player 2, please enter your name: ");// Prompt message to Player 2 to enter Name
+              String namePlayer2 = myplayer.getPlayerName(); 
 	        fromServer.readInt(); // Whatever read is ignored
 	
 
@@ -177,6 +179,7 @@
 	      }
 	    }
 	   catch (IOException e) {
+	   // if one of the Players gets diconnected then display Game Over
 	   if(player == PLAYER1)
 	   {
 	   jlblTitle.setText("GAME OVER ! " +namePlayer1+ " got disconnected");

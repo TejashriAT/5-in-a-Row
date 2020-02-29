@@ -18,8 +18,10 @@
 	    implements Runnable, playerconstraints {
 	  // Indicate whether the player has the turn
 	  private boolean myTurn = false;
-	
-
+	  
+	  // Indicate the name for the player
+          private String name;
+	  
 	  // Indicate the coin for the player
 	  private char myCoin = ' ';
 	
@@ -133,21 +135,10 @@
 
 	      // Am I player 1 or 2?
 	      if (player == PLAYER1) {
-	        myToken = 'r';
-	        otherToken = 'b';
-	        jlblTitle.setText(+namePlayer1+ " please enter the desired color of your coins (r=Red, b=Blue): ");
-                    String color1 = jlblTitle.getText();
-		    
-                    chip2.setColor(color1);
- 
-                    if ("black".equals(color1) || "grey".equals(color1) ||
-                               "white".equals(color1) || "red".equals(color1) || 
-                               "orange".equals(color1) || "yellow".equals(color1) ||
-                               "green".equals(color1) || "blue".equals(color1) || 
-                               "purple".equals(color1) || "brown".equals(color1) || "pink".equals(color1)) {
- 
-		
-	        jlblStatus.setText("Waiting for player 2 to join");
+	                myCoin = 'r';
+        		otherCoin = 'b';
+        		jlblTitle.setText("Player 1 with color Red");
+	       	        jlblStatus.setText("Waiting for player 2 to join");
 	
 
 	        // Receive startup notification from the server
@@ -164,8 +155,8 @@
 	        myTurn = true;
 	      }
 	      else if (player == PLAYER2) {
-	        myToken = 'b';
-	        otherToken = 'r';
+	        myCoin = 'b';
+	        otherCoin = 'r';
 	        jlblTitle.setText(+namePlayer2+" with color blue");
 	        jlblStatus.setText("Waiting for "+nameplayer1+" to move");
 	      }
@@ -197,7 +188,7 @@
     		 fromServer.close();
      		 toServer.close();
     		 socket.close();
-   }
+   		 }
 
 	  /** Wait for the player to mark a cell */
 	  private void waitForPlayerAction() throws InterruptedException {
@@ -224,32 +215,32 @@
 	    if (status == PLAYER1_WON) {
 	      // Player 1 won, stop playing
 	      continueToPlay = false;
-	      if (myToken == 'r') {
-	        jlblStatus.setText("I won!"); // Red
+	      if (myCoin == 'r') {
+	        jlblStatus.setText("I WON!"); // Red
 	      }
 	      else if (myToken == 'b') {
-	        jlblStatus.setText(+namePlayer1+" has won!");
+	        jlblStatus.setText(+namePlayer1+" has WON!");
 	        receiveMove();
 	      }
 	    }
 	    else if (status == PLAYER2_WON) {
 	      // Player 2 won, stop playing
 	      continueToPlay = false;
-	      if (myToken == 'b') {
-	        jlblStatus.setText("I won!"); // Blue
+	      if (myCoin == 'b') {
+	        jlblStatus.setText("I WON!"); // Blue
 	      }
-	      else if (myToken == 'r') {
-	        jlblStatus.setText(+namePlayer2+ " has won!");
+	      else if (myCoin == 'r') {
+	        jlblStatus.setText(+namePlayer2+ " has WON!");
 	        receiveMove();
 	      }
 	    }
 	    else if (status == DRAW) {
 	      // No winner, game is over
 	      continueToPlay = false;
-	      jlblStatus.setText("Game is over, no winner!");
+	      jlblStatus.setText("Game is Over, NO winner!");
 	
 
-	      if (myToken == 'b') {
+	      if (myCoin == 'b') {
 	        receiveMove();
 	      }
 	    }
@@ -265,7 +256,7 @@
 	    // Get the other player's move
 	    int row = fromServer.readInt();
 	    int column = fromServer.readInt();
-	    cell[row][column].setToken(otherToken);
+	    cell[row][column].setCoin(otherCoin);
 	  }
 	
 
@@ -278,7 +269,7 @@
 	
 
 	    // Token used for this cell
-	    private char token = ' ';
+	    private char coin = ' ';
 	
 
 	    public Cell(int row, int column, Cell[][] cell) {
@@ -292,34 +283,41 @@
 	    }
 	
 
-	    /** Return token */
-	    public char getToken() {
-	      return token;
+	    /** Return Coin */
+	    public char getCoin() {
+	      return coin;
 	    }
 	
 
-	    /** Set a new token */
-	    public void setToken(char c) {
-	      token = c;
+	    /** Set a new Coin */
+	    public void setCoin(char c) {
+	      coin = c;
 	      repaint();
 	    }
 	
+	   /** Return PlayerName */
+	    public char getPlayerName() {
+	      return name;
+	    }
+	
 
+	    /** Set a new PlayerName */
+	    public void setPlayerName(string n) {
+	      this.name = n;
+	    }
+	
 	    /** Paint the cell */
 	    protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
 	
 
-	      if (token == 'r') {
+	      if (coin == 'r') {
 	        g.drawOval(9, 9, getWidth() - 20, getHeight() - 20);
 	        g.setColor(Color.red);
 	        g.fillOval(9 ,9,  getWidth() - 20, getHeight() - 20);
-	
-
-	
 
 	      }
-	      else if (token == 'b') {
+	      else if (coin == 'b') {
 	        g.drawOval(10, 10, getWidth() - 20, getHeight() - 20);
 	        g.setColor(Color.blue);
 	        g.fillOval(9 ,9,  getWidth() - 20, getHeight() - 20);
@@ -332,7 +330,7 @@
 	      public void mouseClicked(MouseEvent e) {
 	      	int r= -1;
 	      	for(int x =5; x>= 0; x--){
-	      		if(cell[x][column].getToken() == ' '){
+	      		if(cell[x][column].getCoin() == ' '){
 	
 
 	      			r=x;
@@ -341,7 +339,7 @@
 	      	}
 	        // If cell is not occupied and the player has the turn
 	        if ((r != -1) && myTurn) {
-	          cell[r][column].setToken(myToken);  // Set the player's token in the cell
+	          cell[r][column].setCoin(myCoin);  // Set the player's token in the cell
 	          myTurn = false;
 	          rowSelected = r;
 	          columnSelected = column;
@@ -356,7 +354,7 @@
 	  /** This main method enables the applet to run as an application */
 	  public static void main(String[] args) {
 	    // Create a frame
-	    JFrame frame = new JFrame("Connect 5-in-a-Row Client");
+	    JFrame frame = new JFrame("Connect 4 Client");
 	
 
 	    // Create an instance of the applet

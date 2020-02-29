@@ -4,7 +4,7 @@ Connect 4 (5-in-a-Row) Game also called as **GOMOKU**
 ### Rule Description 
 - 5-in-a-Row, a variation of the famous Connect Four game, is a Two players connection game.
 - Two players choose the color (either **Red** or **Blue**) to take turns to fill the board with coins.
-- The game has a 9 Column and 6 Row grid board game. The pieces fall straight down,
+- The game has a 9 Columns and 6 Rows grid board game. The pieces fall straight down,
   occupying the next available space within the column. The objective of the game is to be the
   first to form a horizontal, vertical, or diagonal line of five of one's own discs.
 
@@ -38,12 +38,12 @@ Softwares to install
  - On each turn, the client displays the state of the board and prompts the
    corresponding player for input or displays that it’s waiting for the other player’s input
    *It’s your turn (Player's Name), please enter column (1-9):*
- - The client receives the input from the player from the standard input (stdin).
+ - The client receives the input from the player from the standard input. 
  - The client displays when the game is over, and the name of the winner.
  
 ## Assumptions & Limitations
-~ There is option two choose from only 2 colors either Red or Blue
-~ Board of size dimension 6x9 (Rows x Columns)
+- There is option to choose from only 2 colors either Red or Blue.
+- Board of size dimension 6x9 (Rows x Columns).
 
 ## Author
-- Tejashri Gunde - Developer/Reviewer
+- Tejashri Gunde - Developer/Author

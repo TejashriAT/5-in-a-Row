@@ -41,7 +41,7 @@
 	System.out.println("CONNECT");
 	      ServerSocket serverSocket = new ServerSocket(port1);
 	System.out.println("DONE");
-	      jtaLog.append(new Date() + ": Server started at socket 1234\n");
+	      jtaLog.append(new Date() + ": Server started at socket 8080\n");
 	
 	      // Number a session
 	      int sessionNo = 1;
@@ -122,7 +122,7 @@
 		p2.add(e);
 		p2.add(iport);
 	
-		jtaLog.append("TEsting\n");
+		jtaLog.append("Testing\n");
 	    add(p1, BorderLayout.CENTER);
 		add(p2, BorderLayout.SOUTH);
 	

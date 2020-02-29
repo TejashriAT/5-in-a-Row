@@ -1,5 +1,5 @@
 # 5-in-a-Row
-Connect 4 (5-in-a-Row) Game
+Connect 4 (5-in-a-Row) Game also called as **GOMOKU**
 
 ### Rule Description 
 - 5-in-a-Row, a variation of the famous Connect Four game, is a Two players connection game.
@@ -10,13 +10,18 @@ Connect 4 (5-in-a-Row) Game
 
 ## Prerequisites
 Softwares to install
-```
-Eclipse
-```
+ ```
+ Eclipse
+ ```
 ## Language Used
-```
-Java
-```
+ ```
+ Java
+ ```
+## File Names
+1. connectfourserver.java
+2. connectfourclient.java
+3. playerconstraints.java
+
 ## Features
 - The communication between the clients and the server should be over HTTP.
 
@@ -37,6 +42,8 @@ Java
  - The client displays when the game is over, and the name of the winner.
  
 ## Assumptions & Limitations
+~ There is option two choose from only 2 colors either Red or Blue
+~ Board of size dimension 6x9 (Rows x Columns)
 
 ## Author
 - Tejashri Gunde - Developer/Reviewer

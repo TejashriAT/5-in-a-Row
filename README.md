@@ -46,7 +46,6 @@ Softwares to install
  
 ## Assumptions & Limitations
 - There is option to choose from only 2 colors either Red or Blue.
-- Board of size dimension 6x9 (Rows x Columns).
 
 ## Author
 - Tejashri Gunde - Developer/Author

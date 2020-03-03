@@ -342,7 +342,7 @@
 	      	}
 	        // If cell is not occupied and the player has the turn
 	        if ((r != -1) && myTurn) {
-	          cell[r][column].setCoin(myCoin);  // Set the player's token in the cell
+	          cell[r][column].setCoin(myCoin);  // Set the player's coin in the cell
 	          myTurn = false;
 	          rowSelected = r;
 	          columnSelected = column;

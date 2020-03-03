@@ -1,15 +1,15 @@
 /*
-* This class contains setter and getter methods of Player's name
+* This interface contains setter and getter methods of Player's name
 */
 
-public class player {
+public interface player {
     private String name;
 
-    public void setName(String inputName) {
+    public void setPlayerName(String inputName) {
         name = inputName;
     }
 
-    public String getName() {
+    public String getPlayerName() {
     return name;
     }
 }

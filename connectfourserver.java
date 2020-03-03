@@ -1,4 +1,3 @@
- package project.connect5inarow;
 
   	import java.io.*;
 	import java.net.*;

@@ -139,7 +139,7 @@
 	
 
 	// Define the thread class for handling a new session for two players
-	class HandleASession implements Runnable, connectfourconstraints {
+	class HandleASession implements Runnable, playerconstraints {
 	  private Socket player1;
 	  private Socket player2;
 	

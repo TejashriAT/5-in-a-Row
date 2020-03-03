@@ -3,13 +3,8 @@
 */
 
 public interface player {
-    private String name;
 
-    public void setPlayerName(String inputName) {
-        name = inputName;
-    }
+    public void setPlayerName(String inputName) 
 
-    public String getPlayerName() {
-    return name;
-    }
+    public String getPlayerName() 
 }

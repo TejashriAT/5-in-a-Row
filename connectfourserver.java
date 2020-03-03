@@ -13,7 +13,7 @@
  * @author Tejashri Gunde
  *
  */
-	public class connectfourserver extends JFrame implements connectfourconstraints {
+	public class connectfourserver extends JFrame implements playerconstraints {
 		JButton jbtConnect;
 		JTextField iport;
 		JTextArea jtaLog;

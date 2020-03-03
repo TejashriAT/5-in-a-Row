@@ -13,12 +13,12 @@
  */
 
 	public class connectfourclient extends JApplet
-	    implements Runnable, playerconstraints {
+	    implements Runnable, player, playerconstraints {
 	  // Indicate whether the player has the turn
 	  private boolean myTurn = false;
 	  
 	  // Indicate the name for the player
-          private String name;
+          private String name = null;
 	  
 	  // Indicate the coin for the player
 	  private char myCoin = ' ';
@@ -51,18 +51,15 @@
 	  private DataInputStream fromServer;
 	  private DataOutputStream toServer;
 	
-
 	  // Continue to play?
 	  private boolean continueToPlay = true;
 	
 
 	  // Wait for the player to mark a cell or logically drop a coin
-	  private boolean waiting = true;
-	
+	  private boolean waiting = true;	
 
 	  // Indicate if it runs as application
-	  private boolean isStandAlone = false;
-	
+	  private boolean isStandAlone = false;	
 
 	  // Host name or ip
 	  private String host = "localhost";
@@ -219,7 +216,7 @@
 	      if (myCoin == 'r') {
 	        jlblStatus.setText("I WON!"); // Red
 	      }
-	      else if (myToken == 'b') {
+	      else if (myCoin == 'b') {
 	        jlblStatus.setText(+namePlayer1+" has WON!");
 	        receiveMove();
 	      }
@@ -279,34 +276,33 @@
 	      this.column = column;
 	      setBorder(new LineBorder(Color.black, 1)); // Set cell's border
 	      addMouseListener(new ClickListener());  // Register listener
-	
 
 	    }
 	
-
 	    /** Return Coin */
 	    public char getCoin() {
 	      return coin;
 	    }
 	
-
 	    /** Set a new Coin */
 	    public void setCoin(char c) {
 	      coin = c;
 	      repaint();
 	    }
-	
+	   
+	   @Override
 	   /** Return PlayerName */
-	    public char getPlayerName() {
+	    public String getPlayerName() {
 	      return name;
 	    }
 	
-
+	   @Override
 	    /** Set a new PlayerName */
-	    public void setPlayerName(string n) {
-	      this.name = n;
+	    public void setPlayerName(String name) {
+	      this.name = name;
 	    }
-	
+	    
+	    
 	    /** Paint the cell */
 	    protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
@@ -332,8 +328,6 @@
 	      	int r= -1;
 	      	for(int x =5; x>= 0; x--){
 	      		if(cell[x][column].getCoin() == ' '){
-	
-
 	      			r=x;
 	      			break;
 	      		}
@@ -351,7 +345,6 @@
 	    }
 	  }
 	
-
 	  /** This main method enables the applet to run as an application */
 	  public static void main(String[] args) {
 	    // Create a frame

@@ -24,6 +24,7 @@ Softwares to install
 1. connectfourserver.java
 2. connectfourclient.java
 3. playerconstraints.java
+4. player.java
 
 ## Features
 - The communication between the clients and the server should be over HTTP.
